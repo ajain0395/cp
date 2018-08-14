@@ -9,6 +9,15 @@ using namespace std;
 typedef struct tr{
     ll s,n;
 }struct_t;
+bool scompare2(struct_t lhs, struct_t rhs) 
+{
+    if(lhs.s < rhs.s)
+        return true;
+    else if(lhs.s == rhs.s && lhs.n < rhs.n)
+        return true;
+    else
+        return false;
+}
 bool scompare(struct_t lhs, struct_t rhs) 
 {
     return lhs.s < rhs.s; 
@@ -42,16 +51,16 @@ int main()
   */
         for(i = 0; i < n - 1; i++)
         {
-            if( a[i].n >= a[i + 1].n)
+            if( a[i].n > a[i + 1].n)
             {
                 count++;
             }
         }
-        b[j].n = j + 1;
         b[j].s = count;
+        b[j].n = j + 1;
 
     }
-        sort(b, b + t, scompare);
+        sort(b, b + t, scompare2);
     for(i = 0; i < t; i++)
     {
         printf("%lld\n",b[i].n);
